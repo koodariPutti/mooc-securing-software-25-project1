@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CSRF demo</title>
+  </head>
+  <body>
+    <h1>Welcome, {{ user.username }}</h1>
+
+    <p>Your current balance: {{ user.account.balance }} €</p>
+
+    <form action="/logout/" method="POST">
+      {% csrf_token %}
+      <button type="submit">Logout</button>
+    </form>
+    
+
+    <!-- Vulnerable -->
+    <form action="/transfer/" method="GET">
+      <label>Recipient: <input type="text" name="to"></label><br>
+      <label>Amount: <input type="number" name="amount"></label><br>
+      <button type="submit">Send</button>
+    </form>
+
+    <!-- CSRF fix
+    <form action="/transfer/" method="POST">
+      {% csrf_token %}
+      <label>Recipient: <input type="text" name="to"></label><br>
+      <label>Amount: <input type="number" name="amount"></label><br>
+      <button type="submit">Send</button>
+    </form>
+    -->
+  </body>
+</html>

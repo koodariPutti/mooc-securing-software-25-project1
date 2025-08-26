@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Bank Transfer</title>
+    </head>
+ 
+ 
+    <body>
+		<h2>Confirm transaction</h2>
+ 
+        <table>
+            <tr>
+                <th style="text-align:left">From: </th>
+                <td>{{user.username}}</td>
+            </tr>
+            <tr>
+                <th style="text-align:left">To: </th>
+                <td>{{request.session.to}}</td>
+            </tr>
+            <tr>
+                <th style="text-align:left">Amount: </th>
+                <td>{{request.session.amount}}</td>
+            </tr>
+        </table>
+
+		<br/>
+		Are you sure?
+        <!---->
+        <form action="/confirm/" method="GET">
+            <input type="submit" value="Yes"/>
+        </form>
+
+        <!-- CSRF fix -->
+        <!--
+        <form action="/confirm/" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Yes"/>
+        </form>
+        -->
+    </body>
+</html>
+ 
